@@ -11,16 +11,16 @@ pip install onion-gpio-sysfs
 
 ## Usage
 
-import onionGpio
+        import onionGpio
 
-# instantiate a GPIO object
-gpio0 = onionGpio.OnionGpio(0)
-# set to output direction with zero (LOW) being the default value
-gpio0.setOutputDirection(0)
-# set falue to 0 (HIGH)
-gpio0.setValue(1)
-gpio.getDirection()
-gpio.getValue()
+        # instantiate a GPIO object
+        gpio0 = onionGpio.OnionGpio(0)
+        # set to output direction with zero (LOW) being the default value
+        gpio0.setOutputDirection(0)
+        # set falue to 0 (HIGH)
+        gpio0.setValue(1)
+        gpio.getDirection()
+        gpio.getValue()
 
 ## Author
 Originally written by https://github.com/greenbreakfast
