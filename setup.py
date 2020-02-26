@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="onion_gpio_sysfs", # Replace with your own username
-    version="0.1.3",
+    version="0.1.4",
     author="Grizmin",
     author_email="grizmin@gmail.com",
     description="Libraries to control GPIOs using the sysfs interface",

@@ -8,11 +8,11 @@ gpioObj	= onionGpio.OnionGpio(gpioNum)
 
 # set to input 
 status 	= gpioObj.setOutputDirection()
-print 'GPIO%d set to output,'%(gpioNum),
+print('GPIO{} set to output,'.format(gpioNum))
 
 # read the value
 value 	= gpioObj.getValue()
-print ' initial value: %d'%(int(value))
+print(' initial value: {}').format(int(value))
 
 
 ## GOING FURTHER

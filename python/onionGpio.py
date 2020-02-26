@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 __version__ = '0.1.1'
 
 _EXIT_SUCCESS = 0
@@ -7,7 +9,7 @@ GPIO_BASE_PATH = '/sys/class/gpio'
 GPIO_EXPORT = GPIO_BASE_PATH + '/export'
 GPIO_UNEXPORT = GPIO_BASE_PATH + '/unexport'
 
-GPIO_PATH = GPIO_BASE_PATH + '/gpio%d'
+GPIO_PATH = GPIO_BASE_PATH + '/gpio{}'
 GPIO_VALUE_FILE = 'value'
 GPIO_DIRECTION_FILE = 'direction'
 GPIO_ACTIVE_LOW_FILE = 'active_low'
@@ -27,12 +29,12 @@ class OnionGpio:
 
     def __init__(self, gpio, verbose=0):
         self.gpio = gpio
-        self.path = GPIO_PATH % self.gpio
+        self.path = GPIO_PATH.format(self.gpio)
 
         self.verbose = verbose
 
         if self.verbose > 0:
-            print('GPIO%d path: %s' % (self.gpio, self.path))
+            print('GPIO{} path: {}'.format(self.gpio, self.path))
 
     def _initGpio(self):
         """Write to the gpio export to make the gpio available in sysfs"""
@@ -68,7 +70,7 @@ class OnionGpio:
             value = 0
 
             with open(gpioFile, 'r') as fd:
-                value = fd.read()
+                value = fd.read().rstrip()
                 fd.close()
 
             # release the gpio sysfs instance
@@ -120,7 +122,7 @@ class OnionGpio:
             # read from the direction file
 
             with open(gpioFile, 'r') as fd:
-                direction = fd.read()
+                direction = fd.read().rstrip()
                 fd.close()
 
             # release the gpio sysfs instance
@@ -194,11 +196,11 @@ class OnionGpio:
         activeLow = _EXIT_FAILURE
 
         with open(gpioFile, 'r') as fd:
-            activeLow = fd.read()
+            activeLow = fd.read().rstrip()
             fd.close()
             if self.verbose > 0:
-                print('onionGpio:getActiveLow:: Reading %s file ... Read %s'
-                      % (gpioFile, activeLow))
+                print('onionGpio:getActiveLow:: Reading {} file ... Read {}'
+                .format(gpioFile, activeLow))
 
         # release the gpio sysfs instance
         status = self._freeGpio()
@@ -222,8 +224,8 @@ class OnionGpio:
         if activeLow == _GPIO_ACTIVE_HIGH or activeLow == _GPIO_ACTIVE_LOW:
             with open(gpioFile, 'w') as fd:
                 if self.verbose > 0:
-                    print('onionGpio:_setActiveLow:: Writing %s to %s file'
-                          % (str(activeLow), gpioFile))
+                    print('onionGpio:_setActiveLow:: Writing {} to {} file'
+                    .format(str(activeLow), gpioFile))
                 fd.write(str(activeLow))
                 fd.close()
                 ret = _EXIT_SUCCESS
