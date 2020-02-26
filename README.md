@@ -17,10 +17,10 @@ import onionGpio
 gpio0 = onionGpio.OnionGpio(0)
 # set to output direction with zero (LOW) being the default value
 gpio0.setOutputDirection(0)
-# set falue to 0 (HIGH)
-gpio0.setValue(1)
-gpio.getDirection()
-gpio.getValue()
+# get the vaule
+gpio0.getValue()
+
+For further examples look at python/examples/ folder.
 
 ## Author
 Originally written by https://github.com/greenbreakfast
