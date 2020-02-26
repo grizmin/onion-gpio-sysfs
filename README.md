@@ -23,6 +23,8 @@ pip install onion-gpio-sysfs
         gpio.getValue()
 
 ## Author
-Originally written by https://github.com/greenbreakfast
+Written by https://github.com/greenbreakfast
+
 Python3 code adaptation by https://github.com/jdupl
+
 PyPi package by https://github.com/grizmin
